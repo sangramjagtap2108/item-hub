@@ -1,0 +1,5 @@
+// This is for auto import 
+// Due to this file the project will be treated as javascript instead of typescript
+{
+    "exclude": ["node_modules"]
+}

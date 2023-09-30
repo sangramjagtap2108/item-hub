@@ -4,6 +4,7 @@
     "slug": "DoneWithIt",
     "version": "1.0.0",
     "orientation": "portrait",
+    "description": "A marketplace for selling the stuff you don't need anymore",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
