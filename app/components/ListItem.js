@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Image, TouchableHighlight } from "react-native";
-
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "./AppText/AppText";
 import colors from "../config/colors";
 
@@ -16,6 +16,8 @@ function ListItem({
   renderRightActions,
   IconComponent,
 }) {
+  const [showShevrons, setShowShevrons] = useState(true);
+
   return (
     // renderRightActions - will render to the right
     <Swipeable renderRightActions={renderRightActions}>
@@ -32,6 +34,18 @@ function ListItem({
             {/* subTitle is optional */}
             {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
           </View>
+          {/* {showShevrons && (
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={20}
+              color={colors.medium}
+            />
+          )} */}
+          <MaterialCommunityIcons
+            name="chevron-right"
+            size={20}
+            color={colors.medium}
+          />
         </View>
       </TouchableHighlight>
     </Swipeable>
@@ -42,12 +56,16 @@ export default ListItem;
 
 const styles = StyleSheet.create({
   container: {
+    // below for chevron-right - primary axis is horizontal(flexDirection: "row") and we want icon vertically
+    // center so along secondary axis
+    alignItems: "center",
     // default is vertical
     flexDirection: "row",
     padding: 15,
     backgroundColor: colors.white,
   },
   detailsContainer: {
+    flex: 1,
     marginLeft: 10,
     // if subTitle is not present below will render title at the center
     justifyContent: "center",

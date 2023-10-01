@@ -340,23 +340,23 @@ export default function App() {
     // <GestureHandlerRootView>
     //   <MessagesScreen />
     // </GestureHandlerRootView>
-    // <Screen>
-    //   {/* <Icon name="email" size={50} backgroundColor="red" iconColor="white" /> */}
-    //   <GestureHandlerRootView>
-    //     <ListItem
-    //       title="My Title"
-    //       subTitle="My SubTitle"
-    //       IconComponent={<Icon name="email" />}
-    //     />
-    //   </GestureHandlerRootView>
-    // </Screen>
+    <Screen>
+      {/* <Icon name="email" size={50} backgroundColor="red" iconColor="white" /> */}
+      <GestureHandlerRootView>
+        <ListItem
+          title="My Title"
+          subTitle="My SubTitle"
+          IconComponent={<Icon name="email" />}
+        />
+      </GestureHandlerRootView>
+    </Screen>
     // <GestureHandlerRootView>
     //   <AccountScreen />
     //   <ListingsScreen />
     // </GestureHandlerRootView>
     // <LoginScreen />
     // <RegisterScreen />
-    <ListingEditScreen />
+    // <ListingEditScreen />
   );
 
   // ******* Project - DoneWithIt ends
