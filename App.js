@@ -318,16 +318,18 @@ export default function App() {
     /* <Switch value={isNew} onValueChange={(newValue) => setIsNew(newValue)} /> */
   }
 
-  //     <AppPicker
-  //       onSelectItem={(item) => setCategory(item)}
-  //       selectedItem={category}
-  //       icon="apps"
-  //       placeholder="Component"
-  //       items={categories}
-  //     />
-  //     <AppTextInput icon="email" placeholder="Email" />
-  //   </Screen>
-  // );
+  {
+    /* <AppPicker
+        onSelectItem={(item) => setCategory(item)}
+        selectedItem={category}
+        icon="apps"
+        placeholder="Component"
+        items={categories}
+      />
+      <AppTextInput icon="email" placeholder="Email" />
+    </Screen>
+  ); */
+  }
 
   // ******* Project - DoneWithIt starts
 

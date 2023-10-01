@@ -5,9 +5,10 @@ import * as Yup from "yup";
 import {
   AppForm as Form,
   AppFormField as FormField,
-  AppFormPicker as Picker,
   SubmitButton,
 } from "../components/forms";
+
+import AppFormPicker from "../components/forms/AppFormPicker";
 
 import Screen from "../components/Screen";
 
@@ -46,7 +47,12 @@ function ListingEditScreen() {
           name="price"
           placeholder="Price"
         />
-        <Picker items={categories} name="category" placeholder="Category" />
+        <AppFormPicker
+          items={categories}
+          name="category"
+          placeholder="Category"
+        />
+
         <FormField
           maxLength={255}
           multiline
