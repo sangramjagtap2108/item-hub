@@ -200,82 +200,82 @@ export default function App() {
   // </SafeAreaView>
   // );
 
-  // return (
-  // <View
-  //   style={{
-  //     flex: 1,
-  //     justifyContent: "center",
-  //     alignItems: "center",
-  //   }}
-  // >
-  //   {/* <View
-  //     style={{
-  //       backgroundColor: "dodgerblue",
-  //       width: 100,
-  //       height: 100,
-  //       // borderColor: "royalblue",
-  //       // borderWidth: 10,
-  //       // borderRadius: 30,
-  //       // gives circle
-  //       // borderRadius: 50,
-  //       padding: 20,
-  //     }}
-  //   >
-  //     <View
-  //       style={{
-  //         backgroundColor: "gold",
-  //         width: 50,
-  //         height: 50,
-  //       }}
-  //     />
-  //   </View>
-  //   <View
-  //     style={{
-  //       backgroundColor: "red",
-  //       width: 100,
-  //       height: 100,
-  //       margin: 20,
-  //     }}
-  //   /> */}
-  //   {/* <Text
-  //     style={{
-  //       fontSize: 30,
-  //       textTransform: "capitalize",
-  //       textAlign: "justify",
-  //       lineHeight: 30,
-  //       // font related props are not available to other components(View) so to make sure that our all texts always
-  //       // look the same we use encapsulating styles(encapsulate the style in custom text component(AppText))
-  //     }}
-  //   >
-  //     I Love React Native !!
-  //   </Text> */}
+  return (
+    // <View
+    //   style={{
+    //     flex: 1,
+    //     justifyContent: "center",
+    //     alignItems: "center",
+    //   }}
+    // >
+    //   {/* <View
+    //     style={{
+    //       backgroundColor: "dodgerblue",
+    //       width: 100,
+    //       height: 100,
+    //       // borderColor: "royalblue",
+    //       // borderWidth: 10,
+    //       // borderRadius: 30,
+    //       // gives circle
+    //       // borderRadius: 50,
+    //       padding: 20,
+    //     }}
+    //   >
+    //     <View
+    //       style={{
+    //         backgroundColor: "gold",
+    //         width: 50,
+    //         height: 50,
+    //       }}
+    //     />
+    //   </View>
+    //   <View
+    //     style={{
+    //       backgroundColor: "red",
+    //       width: 100,
+    //       height: 100,
+    //       margin: 20,
+    //     }}
+    //   /> */}
+    //   {/* <Text
+    //     style={{
+    //       fontSize: 30,
+    //       textTransform: "capitalize",
+    //       textAlign: "justify",
+    //       lineHeight: 30,
+    //       // font related props are not available to other components(View) so to make sure that our all texts always
+    //       // look the same we use encapsulating styles(encapsulate the style in custom text component(AppText))
+    //     }}
+    //   >
+    //     I Love React Native !!
+    //   </Text> */}
 
-  //   {/* <AppText>I Love React Native !!</AppText>
-  //   <MaterialCommunityIcons name="email" size={60} color="dodgerblue" /> */}
+    //   {/* <AppText>I Love React Native !!</AppText>
+    //   <MaterialCommunityIcons name="email" size={60} color="dodgerblue" /> */}
 
-  //   {/* <AppButton title="Login" onPress={() => console.log("Touched")} /> */}
+    //   {/* <AppButton title="Login" onPress={() => console.log("Touched")} /> */}
 
-  // </View>
+    // </View>
 
-  //   //Shadows -
-  //   // On Android, there is no more functionalities related to shadows. We have elevation
-  //   // On IOS, we can have shadow props
+    //   //Shadows -
+    //   // On Android, there is no more functionalities related to shadows. We have elevation
+    //   // On IOS, we can have shadow props
 
-  // Card
-  // <View
-  //   style={{
-  //     backgroundColor: "#f8f4f4",
-  //     padding: 20,
-  //     paddingTop: 100,
-  //   }}
-  // >
-  //   <Card
-  //     title="Red jacket for sale"
-  //     subTitle="$100"
-  //     image={require("./app/assets/jacket.jpg")}
-  //   ></Card>
-  // </View>
-  // );
+    // Card
+    <View
+      style={{
+        backgroundColor: "#f8f4f4",
+        padding: 20,
+        paddingTop: 100,
+      }}
+    >
+      <Card
+        title="Red jacket for sale"
+        subTitle="$100"
+        image={require("./app/assets/jacket.jpg")}
+      ></Card>
+    </View>
+  );
 
   const [firstName, setFirstName] = useState("");
   const [isNew, setIsNew] = useState(false);
@@ -333,31 +333,31 @@ export default function App() {
 
   // ******* Project - DoneWithIt starts
 
-  return (
-    // <WelcomeScreen />
-    // <ViewImageScreen />
-    // <ListingDetailsScreen />
-    // <GestureHandlerRootView>
-    //   <MessagesScreen />
-    // </GestureHandlerRootView>
-    <Screen>
-      {/* <Icon name="email" size={50} backgroundColor="red" iconColor="white" /> */}
-      <GestureHandlerRootView>
-        <ListItem
-          title="My Title"
-          subTitle="My SubTitle"
-          IconComponent={<Icon name="email" />}
-        />
-      </GestureHandlerRootView>
-    </Screen>
-    // <GestureHandlerRootView>
-    //   <AccountScreen />
-    //   <ListingsScreen />
-    // </GestureHandlerRootView>
-    // <LoginScreen />
-    // <RegisterScreen />
-    // <ListingEditScreen />
-  );
+  // return (
+  // <WelcomeScreen />
+  // <ViewImageScreen />
+  // <ListingDetailsScreen />
+  // <GestureHandlerRootView>
+  //   <MessagesScreen />
+  // </GestureHandlerRootView>
+  // <Screen>
+  //   {/* <Icon name="email" size={50} backgroundColor="red" iconColor="white" /> */}
+  //   <GestureHandlerRootView>
+  //     <ListItem
+  //       title="My Title"
+  //       subTitle="My SubTitle"
+  //       IconComponent={<Icon name="email" />}
+  //     />
+  //   </GestureHandlerRootView>
+  // </Screen>
+  // <GestureHandlerRootView>
+  //   <AccountScreen />
+  //   <ListingsScreen />
+  // </GestureHandlerRootView>
+  // <LoginScreen />
+  // <RegisterScreen />
+  // <ListingEditScreen />
+  // );
 
   // ******* Project - DoneWithIt ends
 }

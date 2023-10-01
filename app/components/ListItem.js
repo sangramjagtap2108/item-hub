@@ -30,9 +30,16 @@ function ListItem({
           {/* few listitems dont have image so to handle that, we will only use Image component if image prop is present */}
           {image && <Image style={styles.image} source={image} />}
           <View style={styles.detailsContainer}>
-            <AppText style={styles.title}>{title}</AppText>
+            {/* Number of lines - to handle long text */}
+            <AppText style={styles.title} numberOfLines={1}>
+              {title}
+            </AppText>
             {/* subTitle is optional */}
-            {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
+            {subTitle && (
+              <AppText style={styles.subTitle} numberOfLines={1}>
+                {subTitle}
+              </AppText>
+            )}
           </View>
           {/* {showShevrons && (
             <MaterialCommunityIcons

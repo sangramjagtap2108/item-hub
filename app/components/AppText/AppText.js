@@ -5,9 +5,13 @@ import React from "react";
 import { Text } from "react-native";
 import styles from "./styles";
 
-function AppText(props) {
+function AppText({ style, children, ...otherProps }) {
   // content of the AppText will be stored in children prop
-  return <Text style={[styles.text, props.style]}>{props.children}</Text>;
+  return (
+    <Text style={[styles.text, style]} {...otherProps}>
+      {children}
+    </Text>
+  );
 }
 
 export default AppText;
