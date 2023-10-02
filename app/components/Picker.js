@@ -15,11 +15,11 @@ import {
 } from "react-native";
 import colors from "../config/colors";
 import defaultStyles from "../config/styles";
-import AppText from "./AppText/AppText";
+import AppText from "./Text/Text";
 import Screen from "./Screen";
 import PickerItem from "./PickerItem";
 
-function AppPicker({
+function Picker({
   icon,
   placeholder,
   items,
@@ -107,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppPicker;
+export default Picker;

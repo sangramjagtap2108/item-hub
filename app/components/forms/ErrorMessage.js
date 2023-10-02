@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import AppText from "../AppText/AppText";
+import AppText from "../Text/Text";
 
 function ErrorMessage({ error, visible }) {
   // visible - only for Approach 2 else - if (!error) return null;

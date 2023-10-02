@@ -1,7 +1,7 @@
 import { useFormikContext } from "formik";
 import React from "react";
 import { StyleSheet } from "react-native";
-import AppTextInput from "../AppTextInput";
+import AppTextInput from "../TextInput";
 import ErrorMessage from "./ErrorMessage";
 
 function AppFormField({ name, width, ...otherProps }) {

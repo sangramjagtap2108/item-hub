@@ -2,7 +2,7 @@
 import React from "react";
 import { Image, ImageBackground, StyleSheet, View, Text } from "react-native";
 
-import AppButton from "../components/AppButton";
+import AppButton from "../components/Button";
 
 import colors from "../config/colors";
 

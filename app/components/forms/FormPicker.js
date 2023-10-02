@@ -1,10 +1,10 @@
 import React from "react";
 import { useFormikContext } from "formik";
 
-import AppPicker from "../AppPicker";
+import AppPicker from "../Picker";
 import ErrorMessage from "./ErrorMessage";
 
-function AppFormPicker({
+function FormPicker({
   items,
   name,
   numberOfColumns,
@@ -30,4 +30,4 @@ function AppFormPicker({
   );
 }
 
-export default AppFormPicker;
+export default FormPicker;

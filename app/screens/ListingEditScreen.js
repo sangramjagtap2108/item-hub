@@ -8,7 +8,7 @@ import {
   SubmitButton,
 } from "../components/forms";
 
-import AppFormPicker from "../components/forms/AppFormPicker";
+import AppFormPicker from "../components/forms/FormPicker";
 
 import Screen from "../components/Screen";
 import CategoryPickerItem from "../components/CategoryPickerItem";

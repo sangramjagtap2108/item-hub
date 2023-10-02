@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Image, TouchableHighlight } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import AppText from "./AppText/AppText";
+import AppText from "./Text/Text";
 import colors from "../config/colors";
 
 // npx expo install react-native-gesture-handler

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Screen from "../components/Screen";
 import { Image, StyleSheet } from "react-native";
 import { Formik } from "formik";
-import AppTextInput from "../components/AppTextInput";
-import AppButton from "../components/AppButton";
+import AppTextInput from "../components/TextInput";
+import AppButton from "../components/Button";
 import * as Yup from "yup";
-import AppText from "../components/AppText/AppText";
+import AppText from "../components/Text/Text";
 import ErrorMessage from "../components/forms/ErrorMessage";
 
 // importing in a single statement from index.js, no need to mention index.js
