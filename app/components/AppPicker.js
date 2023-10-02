@@ -23,9 +23,12 @@ function AppPicker({
   icon,
   placeholder,
   items,
+  numberOfColumns = 1,
   onSelectItem,
   selectedItem,
   width = "100%",
+  // Default
+  PickerItemComponent = PickerItem,
 }) {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -62,9 +65,13 @@ function AppPicker({
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
+            // FlatList has a property called numColumns to divide flatlist values column wise
+            numColumns={numberOfColumns}
+            // numColumns={3} - we are not using this approach as this makes property static, if we have 2 pickers
+            // in which only one needs numColumns prop
             renderItem={({ item }) => (
-              <PickerItem
-                label={item.label}
+              <PickerItemComponent
+                item={item}
                 onPress={() => {
                   setModalVisible(false);
                   onSelectItem(item);
