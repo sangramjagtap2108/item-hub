@@ -392,6 +392,7 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 //  ******************** React Native Course 2 **********************
 import { useEffect } from "react";
 import * as ImagePicker from "expo-image-picker";
+import ImageInput from "./app/components/ImageInput";
 // import * as Permissions from "expo-permissions";
 
 export default function App() {
@@ -409,54 +410,57 @@ export default function App() {
     useEffect(() =>{},[]) - will run only once */
   }
 
-  const requestPermission = async () => {
-    // On opening an app we will get dialog box for permission and options allow or deny
-    // We will get dialog box only intially even if we deny or allow
-    // If allow - then device will remember that and will not ask again after
-    // deny - it will give alert - You need to enable permission to access the library
-    // for deny - for second time also it will ask directly alert - You need to enable permission to access the library
-    // and will not ask for intial dialog
-    const result = await ImagePicker.requestCameraPermissionsAsync();
-    if (!result.granted)
-      alert("You need to enable permission to access the library");
+  // const requestPermission = async () => {
+  //   // On opening an app we will get dialog box for permission and options allow or deny
+  //   // We will get dialog box only intially even if we deny or allow
+  //   // If allow - then device will remember that and will not ask again after
+  //   // deny - it will give alert - You need to enable permission to access the library
+  //   // for deny - for second time also it will ask directly alert - You need to enable permission to access the library
+  //   // and will not ask for intial dialog
+  //   const result = await ImagePicker.requestCameraPermissionsAsync();
+  //   if (!result.granted)
+  //     alert("You need to enable permission to access the library");
 
-    // Another way - using permissions module - npm install expo-permissions(check whether compatible with expo)
-    // Below will ask 2 dialogs and if any one id declined then granted will be false
-    // const result = await Permissions.askAsync(
-    //   Permissions.CAMERA,
-    //   Permissions.LOCATION_FOREGROUND
-    // );
-    // if (!result.granted)
-    //   alert("You need to enable permission to access the library");
-  };
+  //   // Another way - using permissions module - npm install expo-permissions(check whether compatible with expo)
+  //   // Below will ask 2 dialogs and if any one id declined then granted will be false
+  //   // const result = await Permissions.askAsync(
+  //   //   Permissions.CAMERA,
+  //   //   Permissions.LOCATION_FOREGROUND
+  //   // );
+  //   // if (!result.granted)
+  //   //   alert("You need to enable permission to access the library");
+  // };
 
-  useEffect(() => {
-    // async function, returns promise.
-    // useEffect cant work with promises so we need to make separate functions
-    requestPermission();
-  }, []);
+  // useEffect(() => {
+  //   // async function, returns promise.
+  //   // useEffect cant work with promises so we need to make separate functions
+  //   requestPermission();
+  // }, []);
 
-  const selectImage = async () => {
-    try {
-      // Accessing the library i.e selecting images from device
-      // below will launch window to select image
-      const result = await ImagePicker.launchImageLibraryAsync();
-      // we are using 2 properties - canceled and uri
-      if (!result.canceled) {
-        // result.url - was not working
-        // Always troubleshoot - print result and check objects
-        setImageURI(result.assets[0].uri);
-      }
-    } catch (error) {
-      console.log("Error reading an image", error);
-    }
-  };
+  // const selectImage = async () => {
+  //   try {
+  //     // Accessing the library i.e selecting images from device
+  //     // below will launch window to select image
+  //     const result = await ImagePicker.launchImageLibraryAsync();
+  //     // we are using 2 properties - canceled and uri
+  //     if (!result.canceled) {
+  //       // result.url - was not working
+  //       // Always troubleshoot - print result and check objects
+  //       setImageURI(result.assets[0].uri);
+  //     }
+  //   } catch (error) {
+  //     console.log("Error reading an image", error);
+  //   }
+  // };
 
   return (
     <Screen>
-      <Button title="Select Image" onPress={selectImage} />
-      <Image source={{ uri: imageURI }} style={{ width: 200, height: 200 }} />
-      {/* <Image source={{ uri: imageUri }} style={styles.image} /> */}
+      {/* <Button title="Select Image" onPress={selectImage} /> */}
+      {/* <Image source={{ uri: imageURI }} style={{ width: 200, height: 200 }} /> */}
+      <ImageInput
+        imageURI={imageURI}
+        onChangeImage={(uri) => setImageURI(uri)}
+      />
     </Screen>
   );
 }
