@@ -17,14 +17,16 @@ import ListItemDeleteAction from "../components/ListItemDeleteAction";
 const initialMessages = [
   {
     id: 1,
-    title: "T1",
-    description: "D1",
+    title: "Mosh Hamedani",
+    description:
+      "I am interested in buying this item. Is this still available?",
     image: require("../assets/mosh.jpg"),
   },
   {
     id: 2,
-    title: "T2",
-    description: "D2",
+    title: "Mosh Hamedani",
+    description:
+      "I am interested in buying this item. Is this still available?",
     image: require("../assets/mosh.jpg"),
   },
 ];
@@ -87,9 +89,17 @@ function MessagesScreen(props) {
         onRefresh={() => {
           setMessages([
             {
+              id: 1,
+              title: "Mosh Hamedani",
+              description:
+                "I am interested in buying this item. Is this still available?",
+              image: require("../assets/mosh.jpg"),
+            },
+            {
               id: 2,
-              title: "T2",
-              description: "D2",
+              title: "Mosh Hamedani",
+              description:
+                "I am interested in buying this item. Is this still available?",
               image: require("../assets/mosh.jpg"),
             },
           ]);

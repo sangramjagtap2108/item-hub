@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 import AppTextInput from "../AppTextInput";
 import ErrorMessage from "./ErrorMessage";
 
-function AppFormField({ name, ...otherProps }) {
+function AppFormField({ name, width, ...otherProps }) {
   // To access formik props like handleChange, touched etc we can use context
   const { handleChange, handleSubmit, errors, setFieldTouched, touched } =
     useFormikContext();
@@ -14,6 +14,7 @@ function AppFormField({ name, ...otherProps }) {
       <AppTextInput
         onBlur={() => setFieldTouched(name)}
         onChangeText={handleChange(name)}
+        width={width}
         {...otherProps}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />
