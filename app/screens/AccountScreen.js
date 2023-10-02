@@ -1,10 +1,11 @@
 import React from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
+
+import Screen from "../components/Screen";
 import ListItem from "../components/ListItem";
+import ListItemSeparatorComponent from "../components/ListItemSeparator";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
-import ListItemSeparator from "../components/ListItemSeparator";
-import Screen from "../components/Screen";
 
 const menuItems = [
   {
@@ -29,7 +30,7 @@ function AccountScreen(props) {
       <View style={styles.container}>
         <ListItem
           title="Mosh Hamedani"
-          subTitle="programmingwithmosh@gmial.com"
+          subTitle="programmingwithmosh@gmail.com"
           image={require("../assets/mosh.jpg")}
         />
       </View>
@@ -37,8 +38,8 @@ function AccountScreen(props) {
         <FlatList
           data={menuItems}
           keyExtractor={(menuItem) => menuItem.title}
-          ItemSeparatorComponent={ListItemSeparator}
-          renderItem={({ item }) => {
+          ItemSeparatorComponent={ListItemSeparatorComponent}
+          renderItem={({ item }) => (
             <ListItem
               title={item.title}
               IconComponent={
@@ -47,26 +48,24 @@ function AccountScreen(props) {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
-            />;
-          }}
+            />
+          )}
         />
       </View>
-      <View style={styles.container}>
-        <ListItem
-          title="Log Out"
-          IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
-        />
-      </View>
+      <ListItem
+        title="Log Out"
+        IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+      />
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: 20,
-  },
   screen: {
     backgroundColor: colors.light,
+  },
+  container: {
+    marginVertical: 20,
   },
 });
 

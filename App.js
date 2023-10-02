@@ -350,13 +350,13 @@ export default function App() {
     //     />
     //   </GestureHandlerRootView>
     // </Screen>
-    // <GestureHandlerRootView>
-    //   <AccountScreen />
-    //   <ListingsScreen />
-    // </GestureHandlerRootView>
+    <GestureHandlerRootView>
+      {/* <AccountScreen /> */}
+      <ListingsScreen />
+    </GestureHandlerRootView>
     // <LoginScreen />
     // <RegisterScreen />
-    <ListingEditScreen />
+    // <ListingEditScreen />
   );
 
   // ******* Project - DoneWithIt ends
