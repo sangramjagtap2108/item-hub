@@ -15,6 +15,7 @@ import AppFormPicker from "../components/forms/FormPicker";
 import Screen from "../components/Screen";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import FormImagePicker from "../components/forms/FormImagePicker";
+import useLocation from "../hooks/useLocation";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -64,31 +65,34 @@ const categories = [
 ];
 
 function ListingEditScreen() {
-  const [location, setLocation] = useState();
+  // const [location, setLocation] = useState();
 
-  // getting the user's location - latitude and longitude
-  const getLocation = async () => {
-    // requesting for location on app
-    const { granted } = await Location.requestForegroundPermissionsAsync();
-    if (!granted) return;
-    // const result = await Location.getLastKnownPositionAsync();
-    // we will need - result.coords.latitude and result.coords.longitude
-    // destructuring
+  // // getting the user's location - latitude and longitude
+  // const getLocation = async () => {
+  //   // requesting for location on app
+  //   const { granted } = await Location.requestForegroundPermissionsAsync();
+  //   if (!granted) return;
+  //   // const result = await Location.getLastKnownPositionAsync();
+  //   // we will need - result.coords.latitude and result.coords.longitude
+  //   // destructuring
 
-    const {
-      coords: { latitude, longitude },
-    } = await Location.getLastKnownPositionAsync();
-    setLocation({ latitude, longitude });
+  //   const {
+  //     coords: { latitude, longitude },
+  //   } = await Location.getLastKnownPositionAsync();
+  //   setLocation({ latitude, longitude });
 
-    // We can also use below function
-    // const currentLocation = await Location.getCurrentPositionAsync({});
-    // console.log(currentLocation);
-    // setLocation(currentLocation);
-  };
+  //   // We can also use below function
+  //   // const currentLocation = await Location.getCurrentPositionAsync({});
+  //   // console.log(currentLocation);
+  //   // setLocation(currentLocation);
+  // };
 
-  useEffect(() => {
-    getLocation();
-  }, []);
+  // useEffect(() => {
+  //   getLocation();
+  // }, []);
+
+  // Custom hook
+  const location = useLocation();
 
   return (
     <Screen style={styles.container}>
