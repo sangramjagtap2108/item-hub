@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
+// npm install expo-location
+import * as Location from "expo-location";
 
 import {
   AppForm as Form,
@@ -62,6 +64,32 @@ const categories = [
 ];
 
 function ListingEditScreen() {
+  const [location, setLocation] = useState();
+
+  // getting the user's location - latitude and longitude
+  const getLocation = async () => {
+    // requesting for location on app
+    const { granted } = await Location.requestForegroundPermissionsAsync();
+    if (!granted) return;
+    // const result = await Location.getLastKnownPositionAsync();
+    // we will need - result.coords.latitude and result.coords.longitude
+    // destructuring
+
+    const {
+      coords: { latitude, longitude },
+    } = await Location.getLastKnownPositionAsync();
+    setLocation({ latitude, longitude });
+
+    // We can also use below function
+    // const currentLocation = await Location.getCurrentPositionAsync({});
+    // console.log(currentLocation);
+    // setLocation(currentLocation);
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
   return (
     <Screen style={styles.container}>
       <Form
@@ -74,7 +102,9 @@ function ListingEditScreen() {
           category: null,
           images: [],
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => console.log(location)}
+        // location - {"latitude": 37.3360781, "longitude": -121.8877472}
+        // the coordinates point to a location in San Jose, California, USA.
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
