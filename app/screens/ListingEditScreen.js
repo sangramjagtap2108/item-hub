@@ -12,12 +12,16 @@ import AppFormPicker from "../components/forms/FormPicker";
 
 import Screen from "../components/Screen";
 import CategoryPickerItem from "../components/CategoryPickerItem";
+import FormImagePicker from "../components/forms/FormImagePicker";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().min(1).max(10000).label("Price"),
   description: Yup.string().label("Description"),
   category: Yup.object().required().nullable().label("Category"),
+  images: Yup.array().min(1, "Please select atleast one image"),
+  // As image would be empty array initially so it will never be null and required() will not work. Instead we will
+  // use min(1)
 });
 
 const categories = [
@@ -68,10 +72,12 @@ function ListingEditScreen() {
           description: "",
           // category - object
           category: null,
+          images: [],
         }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
+        <FormImagePicker name="images" />
         <FormField maxLength={255} name="title" placeholder="Title" />
         <FormField
           keyboardType="numeric"

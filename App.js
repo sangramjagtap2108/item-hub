@@ -455,13 +455,13 @@ export default function App() {
   //   }
   // };
 
-  const handleAdd = (uri) => {
-    setImageURIS([...imageURIS, uri]);
-  };
+  // const handleAdd = (uri) => {
+  //   setImageURIS([...imageURIS, uri]);
+  // };
 
-  const handleRemove = (uri) => {
-    setImageURIS(imageURIS.filter((imageUri) => imageUri !== uri));
-  };
+  // const handleRemove = (uri) => {
+  //   setImageURIS(imageURIS.filter((imageUri) => imageUri !== uri));
+  // };
 
   return (
     // <Screen>
@@ -473,14 +473,16 @@ export default function App() {
     //   />
     // </Screen>
 
-    <Screen>
-      <ImageInputList
-        imageUris={imageURIS}
-        // onAddImage={uri => handleAdd(uri)}
-        // Above is same as - onAddImage={handleAdd}
-        onAddImage={handleAdd}
-        onRemoveImage={handleRemove}
-      />
-    </Screen>
+    // <Screen>
+    //   <ImageInputList
+    //     imageUris={imageURIS}
+    //     // onAddImage={uri => handleAdd(uri)}
+    //     // Above is same as - onAddImage={handleAdd}
+    //     onAddImage={handleAdd}
+    //     onRemoveImage={handleRemove}
+    //   />
+    // </Screen>
+
+    <ListingEditScreen />
   );
 }
