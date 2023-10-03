@@ -393,10 +393,12 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 import { useEffect } from "react";
 import * as ImagePicker from "expo-image-picker";
 import ImageInput from "./app/components/ImageInput";
+import ImageInputList from "./app/components/ImageInputList";
 // import * as Permissions from "expo-permissions";
 
 export default function App() {
-  const [imageURI, setImageURI] = useState();
+  // const [imageURI, setImageURI] = useState();
+  const [imageURIS, setImageURIS] = useState([]);
 
   {
     /* Requesting permissions - Using expo-image-picker (npm install expo-image-picker)
@@ -453,13 +455,31 @@ export default function App() {
   //   }
   // };
 
+  const handleAdd = (uri) => {
+    setImageURIS([...imageURIS, uri]);
+  };
+
+  const handleRemove = (uri) => {
+    setImageURIS(imageURIS.filter((imageUri) => imageUri !== uri));
+  };
+
   return (
+    // <Screen>
+    //   {/* <Button title="Select Image" onPress={selectImage} /> */}
+    //   {/* <Image source={{ uri: imageURI }} style={{ width: 200, height: 200 }} /> */}
+    //   <ImageInput
+    //     imageURI={imageURI}
+    //     onChangeImage={(uri) => setImageURI(uri)}
+    //   />
+    // </Screen>
+
     <Screen>
-      {/* <Button title="Select Image" onPress={selectImage} /> */}
-      {/* <Image source={{ uri: imageURI }} style={{ width: 200, height: 200 }} /> */}
-      <ImageInput
-        imageURI={imageURI}
-        onChangeImage={(uri) => setImageURI(uri)}
+      <ImageInputList
+        imageUris={imageURIS}
+        // onAddImage={uri => handleAdd(uri)}
+        // Above is same as - onAddImage={handleAdd}
+        onAddImage={handleAdd}
+        onRemoveImage={handleRemove}
       />
     </Screen>
   );
