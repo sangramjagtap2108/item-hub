@@ -22,10 +22,11 @@ const menuItems = [
       name: "email",
       backgroundColor: colors.secondary,
     },
+    target: "Messages",
   },
 ];
 
-function AccountScreen(props) {
+function AccountScreen({ navigation }) {
   return (
     <GestureHandlerRootView>
       <Screen style={styles.screen}>
@@ -50,6 +51,8 @@ function AccountScreen(props) {
                     backgroundColor={item.icon.backgroundColor}
                   />
                 }
+                // incase of messages, target=messages so on click messages screen will be rendered
+                onPress={() => navigation.navigate(item.target)}
               />
             )}
           />

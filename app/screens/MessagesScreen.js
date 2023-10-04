@@ -12,6 +12,7 @@ import Screen from "../components/Screen";
 import Constants from "expo-constants";
 import ListItemSeparator from "../components/ListItemSeparator";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 // console.log(Constants);
 
 const initialMessages = [
@@ -64,48 +65,50 @@ function MessagesScreen(props) {
     //   />
     // </SafeAreaView>
 
-    <Screen>
-      <FlatList
-        data={messages}
-        keyExtractor={(message) => message.id.toString()}
-        renderItem={({ item }) => (
-          <ListItem
-            image={item.image}
-            title={item.title}
-            subTitle={item.description}
-            onPress={() => console.log("Message Selectec", item)}
-            // renderRightActions={ListItemDeleteAction}
-            // if we want to pass a prop -
-            renderRightActions={() => (
-              <ListItemDeleteAction onPress={() => handleDelete(item)} />
-            )}
-          />
-        )}
-        // We need to add separation between list items. We can use padding but then the last element will have
-        // padding after it
-        // Instead we can use FlatList prop - ItemSeparatorComponent
-        ItemSeparatorComponent={ListItemSeparator}
-        refreshing={refreshing}
-        onRefresh={() => {
-          setMessages([
-            {
-              id: 1,
-              title: "Mosh Hamedani",
-              description:
-                "I am interested in buying this item. Is this still available?",
-              image: require("../assets/mosh.jpg"),
-            },
-            {
-              id: 2,
-              title: "Mosh Hamedani",
-              description:
-                "I am interested in buying this item. Is this still available?",
-              image: require("../assets/mosh.jpg"),
-            },
-          ]);
-        }}
-      />
-    </Screen>
+    <GestureHandlerRootView>
+      <Screen>
+        <FlatList
+          data={messages}
+          keyExtractor={(message) => message.id.toString()}
+          renderItem={({ item }) => (
+            <ListItem
+              image={item.image}
+              title={item.title}
+              subTitle={item.description}
+              onPress={() => console.log("Message Selectec", item)}
+              // renderRightActions={ListItemDeleteAction}
+              // if we want to pass a prop -
+              renderRightActions={() => (
+                <ListItemDeleteAction onPress={() => handleDelete(item)} />
+              )}
+            />
+          )}
+          // We need to add separation between list items. We can use padding but then the last element will have
+          // padding after it
+          // Instead we can use FlatList prop - ItemSeparatorComponent
+          ItemSeparatorComponent={ListItemSeparator}
+          refreshing={refreshing}
+          onRefresh={() => {
+            setMessages([
+              {
+                id: 1,
+                title: "Mosh Hamedani",
+                description:
+                  "I am interested in buying this item. Is this still available?",
+                image: require("../assets/mosh.jpg"),
+              },
+              {
+                id: 2,
+                title: "Mosh Hamedani",
+                description:
+                  "I am interested in buying this item. Is this still available?",
+                image: require("../assets/mosh.jpg"),
+              },
+            ]);
+          }}
+        />
+      </Screen>
+    </GestureHandlerRootView>
   );
 }
 
