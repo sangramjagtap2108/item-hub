@@ -6,7 +6,7 @@ import AppButton from "../components/Button";
 
 import colors from "../config/colors";
 
-function WelcomeScreen(props) {
+function WelcomeScreen({ navigation }) {
   return (
     <ImageBackground
       // To make bg blury
@@ -22,9 +22,13 @@ function WelcomeScreen(props) {
       {/* AppButton is very close to the edges of the screen, so we will add it in container and give padding */}
       {/* imp to set width as 100% to View - View takes size of the content */}
       <View style={styles.buttonContainer}>
-        <AppButton title="Login" />
+        <AppButton title="Login" onPress={() => navigation.navigate("Login")} />
         {/* <View style={styles.registerButton} /> */}
-        <AppButton title="Register" color="secondary" />
+        <AppButton
+          title="Register"
+          color="secondary"
+          onPress={() => navigation.navigate("Register")}
+        />
       </View>
     </ImageBackground>
   );

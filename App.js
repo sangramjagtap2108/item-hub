@@ -501,6 +501,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Text } from "react-native";
 import Button from "./app/components/Button";
+import AuthNavigator from "./app/navigation/AuthNavigator";
 
 // React navigations provides navigation prop only for Stack.Screen components. Child of Tweets will not have
 // access of navigation prop instead we can use useNavigation
@@ -624,7 +625,8 @@ export default function App() {
   return (
     <NavigationContainer>
       {/* <StackNavigator /> */}
-      <TabNavigator />
+      {/* <TabNavigator /> */}
+      <AuthNavigator />
     </NavigationContainer>
   );
 }
