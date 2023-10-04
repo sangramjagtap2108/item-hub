@@ -507,6 +507,8 @@ import { Text } from "react-native";
 import Button from "./app/components/Button";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
+import AppNavigator from "./app/navigation/AppNavigator";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // React navigations provides navigation prop only for Stack.Screen components. Child of Tweets will not have
 // access of navigation prop instead we can use useNavigation
@@ -631,7 +633,13 @@ export default function App() {
     <NavigationContainer theme={navigationTheme}>
       {/* <StackNavigator /> */}
       {/* <TabNavigator /> */}
-      <AuthNavigator />
+
+      {/* Project code starts */}
+
+      {/* <AuthNavigator /> */}
+      <AppNavigator />
+
+      {/* Project code ends */}
     </NavigationContainer>
   );
 }

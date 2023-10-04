@@ -6,6 +6,7 @@ import ListItem from "../components/ListItem";
 import ListItemSeparatorComponent from "../components/ListItemSeparator";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const menuItems = [
   {
@@ -26,37 +27,39 @@ const menuItems = [
 
 function AccountScreen(props) {
   return (
-    <Screen style={styles.screen}>
-      <View style={styles.container}>
+    <GestureHandlerRootView>
+      <Screen style={styles.screen}>
+        <View style={styles.container}>
+          <ListItem
+            title="Mosh Hamedani"
+            subTitle="programmingwithmosh@gmail.com"
+            image={require("../assets/mosh.jpg")}
+          />
+        </View>
+        <View style={styles.container}>
+          <FlatList
+            data={menuItems}
+            keyExtractor={(menuItem) => menuItem.title}
+            ItemSeparatorComponent={ListItemSeparatorComponent}
+            renderItem={({ item }) => (
+              <ListItem
+                title={item.title}
+                IconComponent={
+                  <Icon
+                    name={item.icon.name}
+                    backgroundColor={item.icon.backgroundColor}
+                  />
+                }
+              />
+            )}
+          />
+        </View>
         <ListItem
-          title="Mosh Hamedani"
-          subTitle="programmingwithmosh@gmail.com"
-          image={require("../assets/mosh.jpg")}
+          title="Log Out"
+          IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
         />
-      </View>
-      <View style={styles.container}>
-        <FlatList
-          data={menuItems}
-          keyExtractor={(menuItem) => menuItem.title}
-          ItemSeparatorComponent={ListItemSeparatorComponent}
-          renderItem={({ item }) => (
-            <ListItem
-              title={item.title}
-              IconComponent={
-                <Icon
-                  name={item.icon.name}
-                  backgroundColor={item.icon.backgroundColor}
-                />
-              }
-            />
-          )}
-        />
-      </View>
-      <ListItem
-        title="Log Out"
-        IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
-      />
-    </Screen>
+      </Screen>
+    </GestureHandlerRootView>
   );
 }
 
