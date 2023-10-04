@@ -4,8 +4,11 @@ import { View, StyleSheet, Image } from "react-native";
 import colors from "../config/colors";
 import AppText from "../components/Text/Text";
 import ListItem from "../components/ListItem";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-function ListingDetailsScreen(props) {
+function ListingDetailsScreen({ route }) {
+  const listings = route.params;
+
   return (
     // <View
     //   style={{
@@ -20,20 +23,40 @@ function ListingDetailsScreen(props) {
     //     image={require("../assets/jacket.jpg")}
     //   ></Card>
     // </View>
-    <View style={styles.card}>
-      <Image style={styles.image} source={require("../assets/jacket.jpg")} />
-      <View style={styles.detailsContainer}>
-        <AppText style={styles.title}>Red jacket for sale</AppText>
-        <AppText style={styles.subTitle}>$100</AppText>
-        <View style={styles.userContainer}>
-          <ListItem
-            image={require("../assets/mosh.jpg")}
-            title="Mosh Hamedani"
-            subTitle="5 Listings"
-          />
+
+    // <GestureHandlerRootView>
+    //   <View style={styles.card}>
+    //     <Image style={styles.image} source={require("../assets/jacket.jpg")} />
+    //     <View style={styles.detailsContainer}>
+    //       <AppText style={styles.title}>Red jacket for sale</AppText>
+    //       <AppText style={styles.subTitle}>$100</AppText>
+    //       <View style={styles.userContainer}>
+    //         <ListItem
+    //           image={require("../assets/mosh.jpg")}
+    //           title="Mosh Hamedani"
+    //           subTitle="5 Listings"
+    //         />
+    //       </View>
+    //     </View>
+    //   </View>
+    // </GestureHandlerRootView>
+
+    <GestureHandlerRootView>
+      <View style={styles.card}>
+        <Image style={styles.image} source={listings.image} />
+        <View style={styles.detailsContainer}>
+          <AppText style={styles.title}>{listings.title}</AppText>
+          <AppText style={styles.subTitle}>{listings.price}</AppText>
+          <View style={styles.userContainer}>
+            <ListItem
+              image={require("../assets/mosh.jpg")}
+              title="Mosh Hamedani"
+              subTitle="5 Listings"
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </GestureHandlerRootView>
   );
 }
 
