@@ -5,6 +5,7 @@ import Screen from "../components/Screen";
 import Card from "../components/Card";
 import colors from "../config/colors";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import routes from "../navigation/routes";
 
 const listings = [
   {
@@ -33,7 +34,7 @@ function ListingsScreen({ navigation }) {
               title={item.title}
               subTitle={"$" + item.price}
               image={item.image}
-              onPress={() => navigation.navigate("ListingsDetails", item)}
+              onPress={() => navigation.navigate(routes.LISTINGS_DETAILS, item)}
             />
           )}
         />
