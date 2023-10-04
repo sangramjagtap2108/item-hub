@@ -1,43 +1,43 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  Image,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  Button,
-  Alert,
-  Platform,
-  // TouchableNativeFeedback - only for android and only works with View
-  useWindowDimensions,
-  TextInput,
-  Switch,
-} from "react-native";
-import { useDeviceOrientation } from "@react-native-community/hooks";
-import WelcomeScreen from "./app/screens/WelcomeScreen";
-import ViewImageScreen from "./app/screens/ViewImageScreen";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+// import { StatusBar } from "expo-status-bar";
+// import {
+//   StyleSheet,
+//   Text,
+//   View,
+//   SafeAreaView,
+//   Image,
+//   TouchableHighlight,
+//   TouchableWithoutFeedback,
+//   TouchableOpacity,
+//   Button,
+//   Alert,
+//   Platform,
+//   // TouchableNativeFeedback - only for android and only works with View
+//   useWindowDimensions,
+//   TextInput,
+//   Switch,
+// } from "react-native";
+// import { useDeviceOrientation } from "@react-native-community/hooks";
+// import WelcomeScreen from "./app/screens/WelcomeScreen";
+// import ViewImageScreen from "./app/screens/ViewImageScreen";
+// import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import AppText from "./app/components/Text/Text";
-import AppButton from "./app/components/Button";
-import Card from "./app/components/Card";
-import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
-import MessagesScreen from "./app/screens/MessagesScreen";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import Screen from "./app/components/Screen";
-import Icon from "./app/components/Icon";
-import ListItem from "./app/components/ListItem";
-import { useState } from "react";
-import AppTextInput from "./app/components/TextInput";
-import AccountScreen from "./app/screens/AccountScreen";
-import ListingsScreen from "./app/screens/ListingsScreen";
-import AppPicker from "./app/components/Picker";
-import LoginScreen from "./app/screens/LoginScreen";
-import RegisterScreen from "./app/screens/RegisterScreen";
-import ListingEditScreen from "./app/screens/ListingEditScreen";
+// import AppText from "./app/components/Text/Text";
+// import AppButton from "./app/components/Button";
+// import Card from "./app/components/Card";
+// import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
+// import MessagesScreen from "./app/screens/MessagesScreen";
+// import { GestureHandlerRootView } from "react-native-gesture-handler";
+// import Screen from "./app/components/Screen";
+// import Icon from "./app/components/Icon";
+// import ListItem from "./app/components/ListItem";
+// import { useState } from "react";
+// import AppTextInput from "./app/components/TextInput";
+// import AccountScreen from "./app/screens/AccountScreen";
+// import ListingsScreen from "./app/screens/ListingsScreen";
+// import AppPicker from "./app/components/Picker";
+// import LoginScreen from "./app/screens/LoginScreen";
+// import RegisterScreen from "./app/screens/RegisterScreen";
+// import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 // export default function App() {
 // const handlePress = () => {
@@ -390,99 +390,241 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 // });
 
 //  ******************** React Native Course 2 **********************
-import { useEffect } from "react";
-import * as ImagePicker from "expo-image-picker";
-import ImageInput from "./app/components/ImageInput";
-import ImageInputList from "./app/components/ImageInputList";
+// import { useEffect } from "react";
+// import * as ImagePicker from "expo-image-picker";
+// import ImageInput from "./app/components/ImageInput";
+// import ImageInputList from "./app/components/ImageInputList";
 // import * as Permissions from "expo-permissions";
 
-export default function App() {
-  // const [imageURI, setImageURI] = useState();
-  const [imageURIS, setImageURIS] = useState([]);
+// export default function App() {
+//   // const [imageURI, setImageURI] = useState();
+//   const [imageURIS, setImageURIS] = useState([]);
 
-  {
-    /* Requesting permissions - Using expo-image-picker (npm install expo-image-picker)
+{
+  /* Requesting permissions - Using expo-image-picker (npm install expo-image-picker)
     After loading app we need to give pop up for requesting permissions
     We can use componentDidMount but function components don't support it
     Instead we can use useEffect hook */
-  }
-  {
-    /* useEffect(() =>{}) - will run everytime component is rendered
+}
+{
+  /* useEffect(() =>{}) - will run everytime component is rendered
     useEffect(() =>{},[a,b,c]) - will run everytime a or b or c is rendered
     useEffect(() =>{},[]) - will run only once */
-  }
+}
 
-  // const requestPermission = async () => {
-  //   // On opening an app we will get dialog box for permission and options allow or deny
-  //   // We will get dialog box only intially even if we deny or allow
-  //   // If allow - then device will remember that and will not ask again after
-  //   // deny - it will give alert - You need to enable permission to access the library
-  //   // for deny - for second time also it will ask directly alert - You need to enable permission to access the library
-  //   // and will not ask for intial dialog
-  //   const result = await ImagePicker.requestCameraPermissionsAsync();
-  //   if (!result.granted)
-  //     alert("You need to enable permission to access the library");
+// const requestPermission = async () => {
+//   // On opening an app we will get dialog box for permission and options allow or deny
+//   // We will get dialog box only intially even if we deny or allow
+//   // If allow - then device will remember that and will not ask again after
+//   // deny - it will give alert - You need to enable permission to access the library
+//   // for deny - for second time also it will ask directly alert - You need to enable permission to access the library
+//   // and will not ask for intial dialog
+//   const result = await ImagePicker.requestCameraPermissionsAsync();
+//   if (!result.granted)
+//     alert("You need to enable permission to access the library");
 
-  //   // Another way - using permissions module - npm install expo-permissions(check whether compatible with expo)
-  //   // Below will ask 2 dialogs and if any one id declined then granted will be false
-  //   // const result = await Permissions.askAsync(
-  //   //   Permissions.CAMERA,
-  //   //   Permissions.LOCATION_FOREGROUND
-  //   // );
-  //   // if (!result.granted)
-  //   //   alert("You need to enable permission to access the library");
-  // };
+//   // Another way - using permissions module - npm install expo-permissions(check whether compatible with expo)
+//   // Below will ask 2 dialogs and if any one id declined then granted will be false
+//   // const result = await Permissions.askAsync(
+//   //   Permissions.CAMERA,
+//   //   Permissions.LOCATION_FOREGROUND
+//   // );
+//   // if (!result.granted)
+//   //   alert("You need to enable permission to access the library");
+// };
 
-  // useEffect(() => {
-  //   // async function, returns promise.
-  //   // useEffect cant work with promises so we need to make separate functions
-  //   requestPermission();
-  // }, []);
+// useEffect(() => {
+//   // async function, returns promise.
+//   // useEffect cant work with promises so we need to make separate functions
+//   requestPermission();
+// }, []);
 
-  // const selectImage = async () => {
-  //   try {
-  //     // Accessing the library i.e selecting images from device
-  //     // below will launch window to select image
-  //     const result = await ImagePicker.launchImageLibraryAsync();
-  //     // we are using 2 properties - canceled and uri
-  //     if (!result.canceled) {
-  //       // result.url - was not working
-  //       // Always troubleshoot - print result and check objects
-  //       setImageURI(result.assets[0].uri);
-  //     }
-  //   } catch (error) {
-  //     console.log("Error reading an image", error);
-  //   }
-  // };
+// const selectImage = async () => {
+//   try {
+//     // Accessing the library i.e selecting images from device
+//     // below will launch window to select image
+//     const result = await ImagePicker.launchImageLibraryAsync();
+//     // we are using 2 properties - canceled and uri
+//     if (!result.canceled) {
+//       // result.url - was not working
+//       // Always troubleshoot - print result and check objects
+//       setImageURI(result.assets[0].uri);
+//     }
+//   } catch (error) {
+//     console.log("Error reading an image", error);
+//   }
+// };
 
-  // const handleAdd = (uri) => {
-  //   setImageURIS([...imageURIS, uri]);
-  // };
+// const handleAdd = (uri) => {
+//   setImageURIS([...imageURIS, uri]);
+// };
 
-  // const handleRemove = (uri) => {
-  //   setImageURIS(imageURIS.filter((imageUri) => imageUri !== uri));
-  // };
+// const handleRemove = (uri) => {
+//   setImageURIS(imageURIS.filter((imageUri) => imageUri !== uri));
+// };
+
+// return (
+//   // <Screen>
+//   //   {/* <Button title="Select Image" onPress={selectImage} /> */}
+//   //   {/* <Image source={{ uri: imageURI }} style={{ width: 200, height: 200 }} /> */}
+//   //   <ImageInput
+//   //     imageURI={imageURI}
+//   //     onChangeImage={(uri) => setImageURI(uri)}
+//   //   />
+//   // </Screen>
+
+//   // <Screen>
+//   //   <ImageInputList
+//   //     imageUris={imageURIS}
+//   //     // onAddImage={uri => handleAdd(uri)}
+//   //     // Above is same as - onAddImage={handleAdd}
+//   //     onAddImage={handleAdd}
+//   //     onRemoveImage={handleRemove}
+//   //   />
+//   // </Screen>
+
+//   <ListingEditScreen />
+// );
+
+// }
+
+// Section 2 - Navigation
+// Navigators -
+// Stack Navigator
+// Tab Navigator
+// Drawer Navigator
+import Screen from "./app/components/Screen";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+// npm install @react-navigation/bottom-tabs
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Text } from "react-native";
+import Button from "./app/components/Button";
+
+// React navigations provides navigation prop only for Stack.Screen components. Child of Tweets will not have
+// access of navigation prop instead we can use useNavigation
+const Tweets = ({ navigation }) => (
+  <Screen>
+    <Text>Tweets</Text>
+    <Button
+      title="View Tweet"
+      // sending params
+      onPress={() => navigation.navigate("TweetDetails", { id: "2" })}
+      // Diff between navigate and push
+      // navigate - we have only one instace of a component in stack
+      // push - we can have multiple instaces of a component in stack
+      // onPress={() => navigation.navigate("Tweets")}
+      // onPress={() => navigation.push("Tweets")}
+    />
+    {/* <Link /> */}
+  </Screen>
+);
+
+// similar to navigation we have route prop for Stack.Screen components, and useRoute for other components
+const TweetDetails = ({ route }) => (
+  <Screen>
+    <Text>Tweet Details {route.params.id}</Text>
+  </Screen>
+);
+
+// Child of Tweets
+const Link = () => {
+  const navigation = useNavigation();
 
   return (
-    // <Screen>
-    //   {/* <Button title="Select Image" onPress={selectImage} /> */}
-    //   {/* <Image source={{ uri: imageURI }} style={{ width: 200, height: 200 }} /> */}
-    //   <ImageInput
-    //     imageURI={imageURI}
-    //     onChangeImage={(uri) => setImageURI(uri)}
-    //   />
-    // </Screen>
+    <Button title="Click" onPress={() => navigation.navigate("TweetDetails")} />
+  );
+};
 
-    // <Screen>
-    //   <ImageInputList
-    //     imageUris={imageURIS}
-    //     // onAddImage={uri => handleAdd(uri)}
-    //     // Above is same as - onAddImage={handleAdd}
-    //     onAddImage={handleAdd}
-    //     onRemoveImage={handleRemove}
-    //   />
-    // </Screen>
+// Stack Navigation
+const Stack = createNativeStackNavigator();
+const StackNavigator = () => (
+  // initialRouteName will be shown initially else the first screen
+  // name would be used as header of the screen
+  // <Stack.Navigator initialRouteName="TweetDetails">
+  //   <Stack.Screen name="Tweets" component={Tweets} />
+  //   <Stack.Screen name="TweetDetails" component={TweetDetails} />
+  // </Stack.Navigator>
+  <Stack.Navigator
+    // customizing headers
+    // Below is for All components, we can overwrite it in individual components
+    screenOptions={{
+      headerStyle: { backgroundColor: "dodgerblue" },
+      headerTintColor: "white",
+    }}
+  >
+    <Stack.Screen
+      name="Tweets"
+      component={Tweets}
+      // customizing headers
+      // Below is for Tweets component
+      options={{
+        headerStyle: { backgroundColor: "tomato" },
+        headerTintColor: "white",
+        // headerShown: false,
+      }}
+    />
+    {/* Setting titles/headers - using options */}
+    <Stack.Screen
+      name="TweetDetails"
+      component={TweetDetails}
+      // options={{
+      //   title: "Tweet Details",
+      // }}
+      // Dynamic -
+      // navigation provides route prop
+      options={({ route }) => ({
+        title: route.params.id,
+      })}
+    />
+  </Stack.Navigator>
+);
 
-    <ListingEditScreen />
+// use () instead of {} for components
+const Account = () => (
+  <Screen>
+    <Text>Account</Text>
+  </Screen>
+);
+
+// Tab Navigation
+const Tab = createBottomTabNavigator();
+const TabNavigator = () => (
+  <Tab.Navigator
+    screenOptions={{
+      tabBarActiveBackgroundColor: "tomato",
+      tabBarActiveTintColor: "white",
+      tabBarInactiveBackgroundColor: "#eee",
+      tabBarInactiveTintColor: "black",
+    }}
+  >
+    <Tab.Screen
+      name="Feed"
+      // currently we are using tab navigator and one of the navigators is tweet. If we want to go from tweets->
+      // tweetdetails, we cant with the current implementation(component={Tweets}). We need to use stack navigator
+      // instead
+      // component={Tweets}
+      // Nesting navigators
+      component={StackNavigator}
+      options={{
+        tabBarIcon: ({ size, color }) => (
+          // <MaterialCommunityIcons name="home" size={25} color="white" />
+          // we can also use default size and color provided by react navigation
+          // default color is decided using the screenOptions
+          <MaterialCommunityIcons name="home" size={size} color={color} />
+        ),
+      }}
+    />
+    <Tab.Screen name="Account" component={Account} />
+  </Tab.Navigator>
+);
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      {/* <StackNavigator /> */}
+      <TabNavigator />
+    </NavigationContainer>
   );
 }
