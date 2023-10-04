@@ -495,13 +495,18 @@
 // Drawer Navigator
 import Screen from "./app/components/Screen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import {
+  DefaultTheme,
+  NavigationContainer,
+  useNavigation,
+} from "@react-navigation/native";
 // npm install @react-navigation/bottom-tabs
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Text } from "react-native";
 import Button from "./app/components/Button";
 import AuthNavigator from "./app/navigation/AuthNavigator";
+import navigationTheme from "./app/navigation/navigationTheme";
 
 // React navigations provides navigation prop only for Stack.Screen components. Child of Tweets will not have
 // access of navigation prop instead we can use useNavigation
@@ -623,7 +628,7 @@ const TabNavigator = () => (
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navigationTheme}>
       {/* <StackNavigator /> */}
       {/* <TabNavigator /> */}
       <AuthNavigator />
