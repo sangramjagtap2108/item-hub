@@ -98,7 +98,12 @@ function ListingEditScreen() {
   const location = { latitude: 37.3360781, longitude: -121.8877472 };
 
   const handleSubmit = async (listing) => {
-    const result = await listingsApi.addListing({ ...listing, location });
+    const result = await listingsApi.addListing(
+      { ...listing, location },
+      (progress) => {
+        console.log(progress);
+      }
+    );
     if (!result.ok) {
       alert("Could not save the listing");
       return;
