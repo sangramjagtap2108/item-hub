@@ -9,6 +9,7 @@ import routes from "../navigation/routes";
 import listingsApi from "../api/listings";
 import AppText from "../components/Text/Text";
 import Button from "../components/Button";
+import ActivityIndicator from "../components/ActivityIndicator";
 
 // const listings = [
 //   {
@@ -28,9 +29,13 @@ import Button from "../components/Button";
 function ListingsScreen({ navigation }) {
   const [listings, setListings] = useState([]);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const loadListings = async () => {
+    setLoading(true);
     const response = await listingsApi.getListings();
+    setLoading(false);
+
     // Handling errors - for testing, close the backend server
     if (!response.ok) {
       setError(true);
@@ -56,6 +61,12 @@ function ListingsScreen({ navigation }) {
           </>
           // If server is not running - we will get error, now start the server and press retry
         )}
+        {/* ActivityIndicator - for animation */}
+        {/* import { ActivityIndicator, FlatList, StyleSheet } from "react-native"; */}
+        {/* <ActivityIndicator animating={loading} size="large" /> */}
+
+        {/* import ActivityIndicator from "../components/ActivityIndicator"; */}
+        {/* <ActivityIndicator visible={loading} /> */}
         <FlatList
           data={listings}
           keyExtractor={(listing) => listing.id.toString()}
