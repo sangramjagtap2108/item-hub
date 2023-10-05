@@ -8,7 +8,7 @@
 import { create } from "apisauce";
 
 const apiClient = create({
-  baseURL: "http://192.168.240.1:9000/api",
+  baseURL: "http://10.0.0.26:9000/api",
 });
 
 // // whenevr we call server,the promise is always resolved. Whe promise is resolved, we get response object
