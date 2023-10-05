@@ -16,6 +16,7 @@ import Screen from "../components/Screen";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import FormImagePicker from "../components/forms/FormImagePicker";
 import useLocation from "../hooks/useLocation";
+import listingsApi from "../api/listings";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -92,7 +93,18 @@ function ListingEditScreen() {
   // }, []);
 
   // Custom hook
-  const location = useLocation();
+  // const location = useLocation();
+
+  const location = { latitude: 37.3360781, longitude: -121.8877472 };
+
+  const handleSubmit = async (listing) => {
+    const result = await listingsApi.addListing({ ...listing, location });
+    if (!result.ok) {
+      alert("Could not save the listing");
+      return;
+    }
+    alert("Success");
+  };
 
   return (
     <Screen style={styles.container}>
@@ -106,7 +118,7 @@ function ListingEditScreen() {
           category: null,
           images: [],
         }}
-        onSubmit={(values) => console.log(location)}
+        onSubmit={handleSubmit}
         // location - {"latitude": 37.3360781, "longitude": -121.8877472}
         // the coordinates point to a location in San Jose, California, USA.
         validationSchema={validationSchema}
