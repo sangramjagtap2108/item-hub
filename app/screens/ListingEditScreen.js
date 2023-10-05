@@ -17,6 +17,7 @@ import CategoryPickerItem from "../components/CategoryPickerItem";
 import FormImagePicker from "../components/forms/FormImagePicker";
 import useLocation from "../hooks/useLocation";
 import listingsApi from "../api/listings";
+import UploadScreen from "./UploadScreen";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -96,14 +97,22 @@ function ListingEditScreen() {
   // const location = useLocation();
 
   const location = { latitude: 37.3360781, longitude: -121.8877472 };
+  const [uploadVisible, setUploadVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleSubmit = async (listing) => {
+    // if we dont set progress = 0, for multiple submits it shows weird progress
+    // before every request to server we are setting it to 0
+    setProgress(0);
+    setUploadVisible(true);
     const result = await listingsApi.addListing(
       { ...listing, location },
       (progress) => {
-        console.log(progress);
+        setProgress(progress);
       }
     );
+    setUploadVisible(false);
+
     if (!result.ok) {
       alert("Could not save the listing");
       return;
@@ -113,6 +122,7 @@ function ListingEditScreen() {
 
   return (
     <Screen style={styles.container}>
+      <UploadScreen progress={progress} visible={uploadVisible} />
       <Form
         initialValues={{
           title: "",
