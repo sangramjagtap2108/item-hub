@@ -10,6 +10,7 @@ import listingsApi from "../api/listings";
 import AppText from "../components/Text/Text";
 import Button from "../components/Button";
 import ActivityIndicator from "../components/ActivityIndicator";
+import useApi from "../hooks/useApi";
 
 // const listings = [
 //   {
@@ -27,24 +28,32 @@ import ActivityIndicator from "../components/ActivityIndicator";
 // ];
 
 function ListingsScreen({ navigation }) {
-  const [listings, setListings] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // const [listings, setListings] = useState([]);
+  // const [error, setError] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
-  const loadListings = async () => {
-    setLoading(true);
-    const response = await listingsApi.getListings();
-    setLoading(false);
+  // const loadListings = async () => {
+  //   setLoading(true);
+  //   const response = await listingsApi.getListings();
+  //   setLoading(false);
 
-    // Handling errors - for testing, close the backend server
-    if (!response.ok) {
-      setError(true);
-      return;
-    }
+  //   // Handling errors - for testing, close the backend server
+  //   if (!response.ok) {
+  //     setError(true);
+  //     return;
+  //   }
 
-    setError(false);
-    setListings(response.data);
-  };
+  //   setError(false);
+  //   setListings(response.data);
+  // };
+
+  //useApi - custom hook to avoid repeatation of code for all requests, only request(listingsApi.getListings) will change
+  const {
+    data: listings,
+    error,
+    loading,
+    request: loadListings,
+  } = useApi(listingsApi.getListings);
 
   // cant use async with useEffect
   useEffect(() => {
