@@ -7,6 +7,8 @@ import colors from "../config/colors";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import routes from "../navigation/routes";
 import listingsApi from "../api/listings";
+import AppText from "../components/Text/Text";
+import Button from "../components/Button";
 
 // const listings = [
 //   {
@@ -25,9 +27,17 @@ import listingsApi from "../api/listings";
 
 function ListingsScreen({ navigation }) {
   const [listings, setListings] = useState([]);
+  const [error, setError] = useState(false);
 
   const loadListings = async () => {
     const response = await listingsApi.getListings();
+    // Handling errors - for testing, close the backend server
+    if (!response.ok) {
+      setError(true);
+      return;
+    }
+
+    setError(false);
     setListings(response.data);
   };
 
@@ -39,6 +49,13 @@ function ListingsScreen({ navigation }) {
   return (
     <GestureHandlerRootView>
       <Screen style={styles.screen}>
+        {error && (
+          <>
+            <AppText>Couldn't retrieve the listings.</AppText>
+            <Button title="Retry" onPress={loadListings} />
+          </>
+          // If server is not running - we will get error, now start the server and press retry
+        )}
         <FlatList
           data={listings}
           keyExtractor={(listing) => listing.id.toString()}
