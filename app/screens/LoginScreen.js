@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Screen from "../components/Screen";
 import { Image, StyleSheet } from "react-native";
 import { Formik } from "formik";
@@ -7,12 +7,15 @@ import AppButton from "../components/Button";
 import * as Yup from "yup";
 import AppText from "../components/Text/Text";
 import ErrorMessage from "../components/forms/ErrorMessage";
+import jwtDecode from "jwt-decode";
 
 // importing in a single statement from index.js, no need to mention index.js
 import { AppFormField, SubmitButton, AppForm } from "../components/forms/";
 // import AppFormField from "../components/forms/AppFormField";
 // import SubmitButton from "../components/forms/SubmitButton";
 // import AppForm from "../components/forms/AppForm";
+import authApi from "../api/auth";
+import AuthContext from "../auth/context";
 
 // Yup - for form validation
 const validationSchema = Yup.object().shape({
@@ -22,8 +25,20 @@ const validationSchema = Yup.object().shape({
 });
 
 function LoginScreen(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const [loginFailed, setLoginFailed] = useState(false);
+  const authContext = useContext(AuthContext);
+
+  const handleSubmit = async ({ email, password }) => {
+    const results = await authApi.login(email, password);
+    if (!results.ok) return setLoginFailed(true);
+
+    setLoginFailed(false);
+    const user = jwtDecode(results.data);
+    authContext.setUser(user);
+    // console.log(user);
+  };
 
   return (
     // <Screen style={styles.container}>
@@ -160,9 +175,13 @@ function LoginScreen(props) {
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
       <AppForm
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
+        <ErrorMessage
+          error="Invalid email and/or password"
+          visible={loginFailed}
+        />
         <AppFormField
           name="email"
           autoCapitalize="none"

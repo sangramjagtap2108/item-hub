@@ -512,6 +512,8 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import OfflineNotice from "./app/components/OfflineNotice";
+import AuthContext from "./app/auth/context";
+import { useState } from "react";
 
 // // React navigations provides navigation prop only for Stack.Screen components. Child of Tweets will not have
 // // access of navigation prop instead we can use useNavigation
@@ -632,6 +634,8 @@ import OfflineNotice from "./app/components/OfflineNotice";
 // );
 
 export default function App() {
+  const [user, setUser] = useState();
+
   return (
     // <NavigationContainer theme={navigationTheme}>
     //   {/* <StackNavigator /> */}
@@ -645,12 +649,16 @@ export default function App() {
     //   {/* Project code ends */}
     // </NavigationContainer>
 
-    <>
+    // user,setUser will be available to all components
+    // setUser is needed because we are setting user value in LoginScreen
+    <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />
       <NavigationContainer theme={navigationTheme}>
-        <AppNavigator />
+        {/* <AppNavigator /> */}
+        {/* <AuthNavigator /> */}
+        {user ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
-    </>
+    </AuthContext.Provider>
   );
 }
 
@@ -717,4 +725,14 @@ export default function App() {
 // applies timestamp to determine expired items and then clean up the async storage
 // With cache layer - it provides one place where oue code is present and avoids repetation of code at
 // multiple places
+// }
+
+//Section - Authentication and authorization
+
+// Redux - For sharing large objects that change frequently
+// React Context - For sharing small objects that don't change often, for ex. user login details, once we log in
+// it will not
+
+// export default function App() {
+//   return <></>;
 // }
