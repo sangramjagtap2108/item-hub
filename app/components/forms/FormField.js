@@ -6,14 +6,25 @@ import ErrorMessage from "./ErrorMessage";
 
 function AppFormField({ name, width, ...otherProps }) {
   // To access formik props like handleChange, touched etc we can use context
-  const { handleChange, handleSubmit, errors, setFieldTouched, touched } =
-    useFormikContext();
+  const {
+    handleChange,
+    handleSubmit,
+    errors,
+    setFieldTouched,
+    setFieldValue,
+    values,
+    touched,
+  } = useFormikContext();
 
   return (
     <>
       <AppTextInput
         onBlur={() => setFieldTouched(name)}
-        onChangeText={handleChange(name)}
+        // onChangeText={handleChange(name)}
+
+        // for reset form - setFieldValue,value, earlier was not required
+        onChangeText={(text) => setFieldValue(name, text)}
+        value={values[name]}
         width={width}
         {...otherProps}
       />

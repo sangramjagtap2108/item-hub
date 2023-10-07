@@ -511,137 +511,210 @@ import AppNavigator from "./app/navigation/AppNavigator";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
+import OfflineNotice from "./app/components/OfflineNotice";
 
-// React navigations provides navigation prop only for Stack.Screen components. Child of Tweets will not have
-// access of navigation prop instead we can use useNavigation
-const Tweets = ({ navigation }) => (
-  <Screen>
-    <Text>Tweets</Text>
-    <Button
-      title="View Tweet"
-      // sending params
-      onPress={() => navigation.navigate("TweetDetails", { id: "2" })}
-      // Diff between navigate and push
-      // navigate - we have only one instace of a component in stack
-      // push - we can have multiple instaces of a component in stack
-      // onPress={() => navigation.navigate("Tweets")}
-      // onPress={() => navigation.push("Tweets")}
-    />
-    {/* <Link /> */}
-  </Screen>
-);
+// // React navigations provides navigation prop only for Stack.Screen components. Child of Tweets will not have
+// // access of navigation prop instead we can use useNavigation
+// const Tweets = ({ navigation }) => (
+//   <Screen>
+//     <Text>Tweets</Text>
+//     <Button
+//       title="View Tweet"
+//       // sending params
+//       onPress={() => navigation.navigate("TweetDetails", { id: "2" })}
+//       // Diff between navigate and push
+//       // navigate - we have only one instace of a component in stack
+//       // push - we can have multiple instaces of a component in stack
+//       // onPress={() => navigation.navigate("Tweets")}
+//       // onPress={() => navigation.push("Tweets")}
+//     />
+//     {/* <Link /> */}
+//   </Screen>
+// );
 
-// similar to navigation we have route prop for Stack.Screen components, and useRoute for other components
-const TweetDetails = ({ route }) => (
-  <Screen>
-    <Text>Tweet Details {route.params.id}</Text>
-  </Screen>
-);
+// // similar to navigation we have route prop for Stack.Screen components, and useRoute for other components
+// const TweetDetails = ({ route }) => (
+//   <Screen>
+//     <Text>Tweet Details {route.params.id}</Text>
+//   </Screen>
+// );
 
-// Child of Tweets
-const Link = () => {
-  const navigation = useNavigation();
+// // Child of Tweets
+// const Link = () => {
+//   const navigation = useNavigation();
 
-  return (
-    <Button title="Click" onPress={() => navigation.navigate("TweetDetails")} />
-  );
-};
+//   return (
+//     <Button title="Click" onPress={() => navigation.navigate("TweetDetails")} />
+//   );
+// };
 
-// Stack Navigation
-const Stack = createNativeStackNavigator();
-const StackNavigator = () => (
-  // initialRouteName will be shown initially else the first screen
-  // name would be used as header of the screen
-  // <Stack.Navigator initialRouteName="TweetDetails">
-  //   <Stack.Screen name="Tweets" component={Tweets} />
-  //   <Stack.Screen name="TweetDetails" component={TweetDetails} />
-  // </Stack.Navigator>
-  <Stack.Navigator
-    // customizing headers
-    // Below is for All components, we can overwrite it in individual components
-    screenOptions={{
-      headerStyle: { backgroundColor: "dodgerblue" },
-      headerTintColor: "white",
-    }}
-  >
-    <Stack.Screen
-      name="Tweets"
-      component={Tweets}
-      // customizing headers
-      // Below is for Tweets component
-      options={{
-        headerStyle: { backgroundColor: "tomato" },
-        headerTintColor: "white",
-        // headerShown: false,
-      }}
-    />
-    {/* Setting titles/headers - using options */}
-    <Stack.Screen
-      name="TweetDetails"
-      component={TweetDetails}
-      // options={{
-      //   title: "Tweet Details",
-      // }}
-      // Dynamic -
-      // navigation provides route prop
-      options={({ route }) => ({
-        title: route.params.id,
-      })}
-    />
-  </Stack.Navigator>
-);
+// // Stack Navigation
+// const Stack = createNativeStackNavigator();
+// const StackNavigator = () => (
+//   // initialRouteName will be shown initially else the first screen
+//   // name would be used as header of the screen
+//   // <Stack.Navigator initialRouteName="TweetDetails">
+//   //   <Stack.Screen name="Tweets" component={Tweets} />
+//   //   <Stack.Screen name="TweetDetails" component={TweetDetails} />
+//   // </Stack.Navigator>
+//   <Stack.Navigator
+//     // customizing headers
+//     // Below is for All components, we can overwrite it in individual components
+//     screenOptions={{
+//       headerStyle: { backgroundColor: "dodgerblue" },
+//       headerTintColor: "white",
+//     }}
+//   >
+//     <Stack.Screen
+//       name="Tweets"
+//       component={Tweets}
+//       // customizing headers
+//       // Below is for Tweets component
+//       options={{
+//         headerStyle: { backgroundColor: "tomato" },
+//         headerTintColor: "white",
+//         // headerShown: false,
+//       }}
+//     />
+//     {/* Setting titles/headers - using options */}
+//     <Stack.Screen
+//       name="TweetDetails"
+//       component={TweetDetails}
+//       // options={{
+//       //   title: "Tweet Details",
+//       // }}
+//       // Dynamic -
+//       // navigation provides route prop
+//       options={({ route }) => ({
+//         title: route.params.id,
+//       })}
+//     />
+//   </Stack.Navigator>
+// );
 
-// use () instead of {} for components
-const Account = () => (
-  <Screen>
-    <Text>Account</Text>
-  </Screen>
-);
+// // use () instead of {} for components
+// const Account = () => (
+//   <Screen>
+//     <Text>Account</Text>
+//   </Screen>
+// );
 
-// Tab Navigation
-const Tab = createBottomTabNavigator();
-const TabNavigator = () => (
-  <Tab.Navigator
-    screenOptions={{
-      tabBarActiveBackgroundColor: "tomato",
-      tabBarActiveTintColor: "white",
-      tabBarInactiveBackgroundColor: "#eee",
-      tabBarInactiveTintColor: "black",
-    }}
-  >
-    <Tab.Screen
-      name="Feed"
-      // currently we are using tab navigator and one of the navigators is tweet. If we want to go from tweets->
-      // tweetdetails, we cant with the current implementation(component={Tweets}). We need to use stack navigator
-      // instead
-      // component={Tweets}
-      // Nesting navigators
-      component={StackNavigator}
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          // <MaterialCommunityIcons name="home" size={25} color="white" />
-          // we can also use default size and color provided by react navigation
-          // default color is decided using the screenOptions
-          <MaterialCommunityIcons name="home" size={size} color={color} />
-        ),
-      }}
-    />
-    <Tab.Screen name="Account" component={Account} />
-  </Tab.Navigator>
-);
+// // Tab Navigation
+// const Tab = createBottomTabNavigator();
+// const TabNavigator = () => (
+//   <Tab.Navigator
+//     screenOptions={{
+//       tabBarActiveBackgroundColor: "tomato",
+//       tabBarActiveTintColor: "white",
+//       tabBarInactiveBackgroundColor: "#eee",
+//       tabBarInactiveTintColor: "black",
+//     }}
+//   >
+//     <Tab.Screen
+//       name="Feed"
+//       // currently we are using tab navigator and one of the navigators is tweet. If we want to go from tweets->
+//       // tweetdetails, we cant with the current implementation(component={Tweets}). We need to use stack navigator
+//       // instead
+//       // component={Tweets}
+//       // Nesting navigators
+//       component={StackNavigator}
+//       options={{
+//         tabBarIcon: ({ size, color }) => (
+//           // <MaterialCommunityIcons name="home" size={25} color="white" />
+//           // we can also use default size and color provided by react navigation
+//           // default color is decided using the screenOptions
+//           <MaterialCommunityIcons name="home" size={size} color={color} />
+//         ),
+//       }}
+//     />
+//     <Tab.Screen name="Account" component={Account} />
+//   </Tab.Navigator>
+// );
 
 export default function App() {
   return (
-    <NavigationContainer theme={navigationTheme}>
-      {/* <StackNavigator /> */}
-      {/* <TabNavigator /> */}
+    // <NavigationContainer theme={navigationTheme}>
+    //   {/* <StackNavigator /> */}
+    //   {/* <TabNavigator /> */}
 
-      {/* Project code starts */}
+    //   {/* Project code starts */}
 
-      {/* <AuthNavigator /> */}
-      <AppNavigator />
+    //   {/* <AuthNavigator /> */}
+    //   {/* <AppNavigator /> */}
 
-      {/* Project code ends */}
-    </NavigationContainer>
+    //   {/* Project code ends */}
+    // </NavigationContainer>
+
+    <>
+      <OfflineNotice />
+      <NavigationContainer theme={navigationTheme}>
+        <AppNavigator />
+      </NavigationContainer>
+    </>
   );
 }
+
+// import React from "react";
+// import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
+// import { Button, View } from "react-native";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+
+// export default function App() {
+// // to get network details of the device -
+// // NetInfo.fetch() - returns promise, we can either await or use then
+// NetInfo.fetch().then((netInfo) => console.log(netInfo));
+// // netInfo has -
+// // isConnected - tells about network connection
+// // if isConnected is true that does not mean that internet is accessible, we should always check
+// // isInternetReachable - initially null as NetInfo is trying to reach to the internet
+// // with fetch method we can get info about internet connection only once initially which is not very reliable
+// // that is why we use addEventListener.
+// // We can send function to addEventListener and that function will get called everytime there change in
+// // network status
+// // This gets called twice unlike fetch. Initially when isInternetReachable=null and secondly when
+// // isInternetReachable=true
+// // Below function will get called at the time of componentDidMount
+// const unsubscribe = NetInfo.addEventListener((netInfo) =>
+//   console.log(netInfo)
+// );
+// // at the time of componentWillUnmount -
+// // it is required to unsubscribe else addEventListener will keep calling
+// unsubscribe();
+// We can use useNetInfo hook that would do the above work
+// const netInfo = useNetInfo();
+// return netInfo.isInternetReachable ? <View></View> : <View></View>
+// Caching
+// When we call the api we want to store the successful api data locally on the cache so if the network goes down
+// we can use the data in the cache
+// We have 3 options -
+// 1.AsyncStorage - like a local storage in web browser, we store key value pairs, values are strings and they
+// are not encrypted so we should not store sensitive data and this has limited storage
+// 2.SecureStore - api build by the expo, again limited space, should store onlt limited data and secure data
+// 3.SQLite - when we want to query data with sql queries
+// With all these options data is available with app restarts but it gets wiped out if user uninstalls the app
+
+// AsyncStorage
+// const demo = async () => {
+//   try {
+//     await AsyncStorage.setItem("person", JSON.stringify({ id: 1 }));
+//     const value = await AsyncStorage.getItem("person");
+//     JSON.parse(value);
+//     console.log(value);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// demo();
+
+// For our project - we dont have to query on the listings data(array of objects) obtained from the server and
+// we will use secureStore only incase of very limited secure data. So we will use AsyncStorage
+// On Android - AsyncStorage uses sqlite under the hood
+// On ios - uses dictionary/files
+// We should not use AsyncStorage directly instead we should use it with cache layer
+// Cache layer -
+// automatically serialize/deserialize (stringify, parse)
+// applies timestamp to determine expired items and then clean up the async storage
+// With cache layer - it provides one place where oue code is present and avoids repetation of code at
+// multiple places
+// }

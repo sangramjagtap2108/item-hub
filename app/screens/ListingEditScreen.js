@@ -100,7 +100,10 @@ function ListingEditScreen() {
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  const handleSubmit = async (listing) => {
+  // to reset form - Formik onSubmit has 2 methods - values and formikBag
+  //formikBag is an object that has property resetForm and methods starting with set
+
+  const handleSubmit = async (listing, { resetForm }) => {
     // if we dont set progress = 0, for multiple submits it shows weird progress
     // before every request to server we are setting it to 0
     setProgress(0);
@@ -119,6 +122,10 @@ function ListingEditScreen() {
       return;
     }
     // alert("Success");
+
+    resetForm();
+    // on reset - image and picker gets reset but title and price did not.Because setFieldValue and values objects
+    // were missing in formfield but they are present in formpicker
   };
 
   return (

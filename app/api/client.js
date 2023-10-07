@@ -6,6 +6,7 @@
 // so we dont need to add try/catch block. We just take the response and check if there is error
 
 import { create } from "apisauce";
+import cache from "../utility/cache";
 
 const apiClient = create({
   baseURL: "http://10.0.0.26:9000/api",
@@ -17,5 +18,25 @@ const apiClient = create({
 //   // if !response.ok -> response.problem
 //   // response.problem is a string and it can be CLIENT_ERROR, SERVER_ERROR, TIMEOUT_ERROR etc (standardized errors)
 // });
+
+// apiClient.get fetches the data from the server but we are overriding get() with additional feature
+// First it will fetch data from server and then store it in cache, so if network goes down we can get data from
+// cache
+// const get = apiClient.get;
+// apiClient.get = async (url, params, axiosConfig) => {
+//   // calling server
+//   const response = await get(url, params, axiosConfig);
+
+//   // if request is successful - storing data in cache and returning response
+//   if (response.ok) {
+//     cache.store(url, response.data);
+//     return response;
+//   }
+
+//   // if request is unsuccessful due to network - fetching data from cache if present else returning response from
+//   // the server(error)
+//   const data = await cache.get(url);
+//   return data ? { ok: true, data } : response;
+// };
 
 export default apiClient;

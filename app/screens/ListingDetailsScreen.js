@@ -1,5 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet } from "react-native";
+// import { View, StyleSheet, Image } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 
 import colors from "../config/colors";
 import AppText from "../components/Text/Text";
@@ -43,7 +45,13 @@ function ListingDetailsScreen({ route }) {
 
     <GestureHandlerRootView>
       <View style={styles.card}>
-        <Image style={styles.image} source={listings.image} />
+        {/* <Image style={styles.image} source={listings.image} /> */}
+        <Image
+          style={styles.image}
+          preview={{ uri: listings.images[0].thumbnailUrl }}
+          tint="light"
+          uri={listings.images[0].url}
+        />
         <View style={styles.detailsContainer}>
           <AppText style={styles.title}>{listings.title}</AppText>
           <AppText style={styles.subTitle}>{listings.price}</AppText>
