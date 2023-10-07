@@ -16,6 +16,7 @@ import { AppFormField, SubmitButton, AppForm } from "../components/forms/";
 // import AppForm from "../components/forms/AppForm";
 import authApi from "../api/auth";
 import AuthContext from "../auth/context";
+import AuthStorage from "../auth/storage";
 
 // Yup - for form validation
 const validationSchema = Yup.object().shape({
@@ -38,6 +39,7 @@ function LoginScreen(props) {
     const user = jwtDecode(results.data);
     authContext.setUser(user);
     // console.log(user);
+    AuthStorage.storeToken(results.data);
   };
 
   return (

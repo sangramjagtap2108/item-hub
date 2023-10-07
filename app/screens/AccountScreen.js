@@ -8,6 +8,7 @@ import colors from "../config/colors";
 import Icon from "../components/Icon";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import AuthContext from "../auth/context";
+import AuthStorage from "../auth/storage";
 
 const menuItems = [
   {
@@ -29,6 +30,12 @@ const menuItems = [
 
 function AccountScreen({ navigation }) {
   const { user, setUser } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    setUser(null);
+    // no need to use await for removeToken, as we are not doing any operation after that
+    AuthStorage.removeToken();
+  };
 
   return (
     <GestureHandlerRootView>
@@ -63,7 +70,7 @@ function AccountScreen({ navigation }) {
         <ListItem
           title="Log Out"
           IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
-          onPress={() => setUser(null)}
+          onPress={handleLogout}
         />
       </Screen>
     </GestureHandlerRootView>

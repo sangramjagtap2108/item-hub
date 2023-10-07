@@ -513,7 +513,9 @@ import ListingsScreen from "./app/screens/ListingsScreen";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import OfflineNotice from "./app/components/OfflineNotice";
 import AuthContext from "./app/auth/context";
-import { useState } from "react";
+import AuthStorage from "./app/auth/storage";
+import { useEffect, useState } from "react";
+import jwtDecode from "jwt-decode";
 
 // // React navigations provides navigation prop only for Stack.Screen components. Child of Tweets will not have
 // // access of navigation prop instead we can use useNavigation
@@ -635,6 +637,16 @@ import { useState } from "react";
 
 export default function App() {
   const [user, setUser] = useState();
+
+  const restoreToken = async () => {
+    const token = await AuthStorage.getToken();
+    if (!token) return;
+    setUser(jwtDecode(token));
+  };
+
+  useEffect(() => {
+    restoreToken();
+  }, []);
 
   return (
     // <NavigationContainer theme={navigationTheme}>
