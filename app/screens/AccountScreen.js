@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 
 import Screen from "../components/Screen";
@@ -7,6 +7,7 @@ import ListItemSeparatorComponent from "../components/ListItemSeparator";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import AuthContext from "../auth/context";
 
 const menuItems = [
   {
@@ -27,13 +28,15 @@ const menuItems = [
 ];
 
 function AccountScreen({ navigation }) {
+  const { user, setUser } = useContext(AuthContext);
+
   return (
     <GestureHandlerRootView>
       <Screen style={styles.screen}>
         <View style={styles.container}>
           <ListItem
-            title="Mosh Hamedani"
-            subTitle="programmingwithmosh@gmail.com"
+            title={user.name}
+            subTitle={user.email}
             image={require("../assets/mosh.jpg")}
           />
         </View>
@@ -60,6 +63,7 @@ function AccountScreen({ navigation }) {
         <ListItem
           title="Log Out"
           IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+          onPress={() => setUser(null)}
         />
       </Screen>
     </GestureHandlerRootView>
