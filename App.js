@@ -637,16 +637,25 @@ import jwtDecode from "jwt-decode";
 
 export default function App() {
   const [user, setUser] = useState();
+  // tells if app is ready
+  // const [isReady, setIsReady] = useState();
 
-  const restoreToken = async () => {
-    const token = await AuthStorage.getToken();
-    if (!token) return;
-    setUser(jwtDecode(token));
+  const restoreUser = async () => {
+    const user = await AuthStorage.getUser();
+    if (user) setUser(user);
   };
 
   useEffect(() => {
-    restoreToken();
+    restoreUser();
   }, []);
+
+  // AppLoading compoent will be displayed until app gets loaded
+  // if (!isReady)
+  //   // startAsync - this will execute when app starts
+  //   // onFinish - will get raised when execution of the function is finished
+  //   return (
+  //     <AppLoading startAsync={restoreToken} onFinish={() => setIsReady(true)} />
+  //   );
 
   return (
     // <NavigationContainer theme={navigationTheme}>

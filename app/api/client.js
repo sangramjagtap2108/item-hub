@@ -7,6 +7,7 @@
 
 import { create } from "apisauce";
 import cache from "../utility/cache";
+import AuthStorage from "../auth/storage";
 
 const apiClient = create({
   baseURL: "http://10.0.0.26:9000/api",
@@ -38,5 +39,17 @@ const apiClient = create({
 //   const data = await cache.get(url);
 //   return data ? { ok: true, data } : response;
 // };
+
+// We want to protect our apis - when we make request to get listings for a particular user then only authorized
+// users should get listings. To know if user is authorized we should send a token along the request. If we dont send
+// token or send a wrong token then server will return a error
+// apiClient.addAsyncRequestTransform is a common method which will send a token everytime a request is made
+apiClient.addAsyncRequestTransform(async (request) => {
+  const authToken = await AuthStorage.getToken();
+  if (!authToken) return;
+  // Adding token to a request header
+  // key of token on server - x-auth-token
+  request.headers["x-auth-token"] = authToken;
+});
 
 export default apiClient;
